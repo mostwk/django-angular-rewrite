@@ -1,8 +1,9 @@
 from django.conf.urls import include, url
 
+app_name = 'apis'
+
 urlpatterns = [
-    url(
-        regex='^auth/',
-        view=include('django_rewrite.authentication.urls', namespace='auth')
+    url('^auth/', include(
+        'django_rewrite.authentication.urls', namespace='auth')
     )
 ]
