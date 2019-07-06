@@ -31,6 +31,8 @@ class RegistrationApi(APIView):
                 raise ValidationError(
                     {'username': 'this username is already taken'})
 
+            return data
+
         def create(self, validated_data):
             return User.objects.create_user(**validated_data)
 
