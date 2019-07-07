@@ -1,11 +1,4 @@
----
-title: 'django-rewrite'
----
-
-Behold My Awesome Project!
-
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg)](https://github.com/pydanny/cookiecutter-django/)
-
 [![Build Status](https://travis-ci.com/mostwk/django-angular-rewrite.svg?branch=master)](https://travis-ci.com/mostwk/django-angular-rewrite)
 
 
