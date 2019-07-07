@@ -16,6 +16,7 @@ before_install:
 
 env:
   - DATABASE_URL=psql://postgres@127.0.0.1:5432/test
+  - USE_DOCKER=False
 
 language: python
 
@@ -33,4 +34,5 @@ before_script:
 script:
   - ./manage.py migrate
   - flake8
+  - cd django_rewrite/
   - pytest

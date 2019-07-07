@@ -12,7 +12,6 @@ class _UserSerializer(serializers.ModelSerializer):
         ]
 
 
-
 def get_user_data(*, user: User) -> dict:
     user_data = _UserSerializer(instance=user).data
     return {**user_data}
