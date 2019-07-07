@@ -15,8 +15,7 @@ before_install:
   # - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
 
 env:
-  - DATABASE_URL=psql://postgres@127.0.0.1:5432/test
-  - USE_DOCKER=False
+  - DATABASE_URL=psql://postgres@127.0.0.1:5432/test USE_DOCKER=False
 
 language: python
 

@@ -27,7 +27,7 @@ TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG  # noqa F405
 # EMAIL
 
 EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"  # noqa
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
 EMAIL_HOST = "localhost"
@@ -38,7 +38,7 @@ if env("USE_DOCKER") == "yes":
     import socket
 
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS += [ip[:-1] + "1" for ip in ips]
+    INTERNAL_IPS += [ip[:-1] + "1" for ip in ips]  # noqa
 
 # Celery
 
