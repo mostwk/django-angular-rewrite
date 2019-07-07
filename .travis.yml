@@ -7,7 +7,7 @@ services: postgresql
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y postgresql-11 postgresql-client-11
+  - sudo apt-get install -y postgresql-10 postgresql-client-10
   # - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
   # - sudo apt-get install -qq libjpeg8-dev libfreetype6-dev libwebp-dev
   # - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
