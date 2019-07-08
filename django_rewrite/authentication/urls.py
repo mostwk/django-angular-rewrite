@@ -15,4 +15,9 @@ urlpatterns = [
         view=apis.RegistrationApi.as_view(),
         name='register'
     ),
+    url(
+        regex='^me/$',
+        view=apis.UserDetailApi.as_view(),
+        name='user-detail'
+    ),
 ]

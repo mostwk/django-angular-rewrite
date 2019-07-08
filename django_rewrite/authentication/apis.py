@@ -1,11 +1,12 @@
 from rest_framework import serializers, status
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.views import ObtainJSONWebToken
-from rest_framework.exceptions import ValidationError
 from users.models import User
 
-from .services import get_user_data
+from .permissions import JSONWebTokenAuthenticationMixin
+from .services import get_user_data, get_full_user_data, update_user_data
 
 
 class RegistrationApi(APIView):
@@ -57,3 +58,14 @@ class LoginApi(ObtainJSONWebToken):
         full_data.update({'token': token})
 
         return Response(full_data)
+
+
+class UserDetailApi(JSONWebTokenAuthenticationMixin, APIView):
+    def get(self, request):
+        full_data = get_full_user_data(user=request.user)
+
+        return Response(full_data)
+
+    def patch(self, request):
+        update_user_data(user=request.user)
+        pass

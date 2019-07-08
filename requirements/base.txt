@@ -2,12 +2,14 @@ argon2-cffi==19.1.0  # https://github.com/hynek/argon2_cffi
 redis==3.2.1  # https://github.com/antirez/redis
 celery==4.3.0  # pyup: < 5.0  # https://github.com/celery/celery
 psycopg2-binary==2.8.3  # psycopg2  # https://github.com/psycopg/psycopg2
+Pillow
 
 # Django
 # ------------------------------------------------------------------------------
-django==2.2.2  # pyup: < 3.0  # https://www.djangoproject.com/
+django==2.2.3  # pyup: < 3.0  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
 django-redis==4.10.0  # https://github.com/niwinz/django-redis
+django-image-cropping
 
 # Django REST Framework
 djangorestframework==3.9.4  # https://github.com/encode/django-rest-framework

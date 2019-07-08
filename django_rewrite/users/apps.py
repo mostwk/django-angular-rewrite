@@ -7,7 +7,4 @@ class UsersConfig(AppConfig):
     verbose_name = _("Users")
 
     def ready(self):
-        try:
-            import django_rewrite.users.signals  # noqa F401
-        except ImportError:
-            pass
+        from . import signals  # noqa
