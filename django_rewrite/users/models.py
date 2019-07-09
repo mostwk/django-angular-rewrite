@@ -1,10 +1,20 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinLengthValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from image_cropping import ImageCropField, ImageRatioField
 
 
 class User(AbstractUser):
-    pass
+    username = models.CharField(
+        _('username'),
+        max_length=15,
+        unique=True,
+        error_messages={
+            'unique': _("A user with that username already exists."),
+        },
+        validators=[MinLengthValidator(4)]
+    )
 
 
 class Profile(models.Model):

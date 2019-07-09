@@ -1,12 +1,16 @@
 from rest_framework import serializers, status
-from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.views import ObtainJSONWebToken
 from users.models import User
 
 from .permissions import JSONWebTokenAuthenticationMixin
-from .services import get_user_data, get_full_user_data, update_user_data
+from users.services import (
+    get_user_data,
+    get_full_user_data,
+    update_user_data,
+    update_user_profile,
+)
 
 
 class RegistrationApi(APIView):
@@ -14,7 +18,6 @@ class RegistrationApi(APIView):
     permission_classes = ()
 
     class Serializer(serializers.ModelSerializer):
-        username = serializers.CharField(max_length=20, min_length=5)
         password = serializers.CharField(
             max_length=128,
             min_length=8,
@@ -25,17 +28,6 @@ class RegistrationApi(APIView):
         class Meta:
             model = User
             fields = ['username', 'password', 'token']
-
-        def validate(self, data):
-            username = data.get('username')
-            if User.objects.filter(username=username).exists():
-                raise ValidationError(
-                    {'username': 'this username is already taken'})
-
-            return data
-
-        def create(self, validated_data):
-            return User.objects.create_user(**validated_data)
 
     def post(self, request):
         serializer = self.Serializer(data=request.data)
@@ -62,10 +54,24 @@ class LoginApi(ObtainJSONWebToken):
 
 class UserDetailApi(JSONWebTokenAuthenticationMixin, APIView):
     def get(self, request):
-        full_data = get_full_user_data(user=request.user)
+        user_data = get_user_data(user=request.user)
 
-        return Response(full_data)
+        return Response(user_data)
 
     def patch(self, request):
-        update_user_data(user=request.user)
-        pass
+        new_user_data = update_user_data(user=request.user, data=request.data)
+
+        return Response(new_user_data)
+
+
+class UserProfileApi(JSONWebTokenAuthenticationMixin, APIView):
+    def get(self, request):
+        full_user_data = get_full_user_data(user=request.user)
+
+        return Response(full_user_data)
+
+    def patch(self, request):
+        new_user_profile = update_user_profile(
+            user=request.user, data=request.data)
+
+        return Response(new_user_profile)

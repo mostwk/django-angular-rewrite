@@ -20,4 +20,9 @@ urlpatterns = [
         view=apis.UserDetailApi.as_view(),
         name='user-detail'
     ),
+    url(
+        regex='^me/profile/$',
+        view=apis.UserProfileApi.as_view(),
+        name='user-profile'
+    ),
 ]
