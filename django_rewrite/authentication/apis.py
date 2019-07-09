@@ -29,6 +29,9 @@ class RegistrationApi(APIView):
             model = User
             fields = ['username', 'password', 'token']
 
+        def create(self, validated_data):
+            return User.objects.create_user(**validated_data)
+
     def post(self, request):
         serializer = self.Serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
