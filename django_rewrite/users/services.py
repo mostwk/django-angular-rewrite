@@ -22,7 +22,7 @@ class _UpdateUserSerializer(serializers.ModelSerializer):
 
 
 class _ProfileSerializer(serializers.ModelSerializer):
-    avatar = serializers.FileField(required=False)
+    avatar = serializers.ImageField(required=False)
     description = serializers.CharField(required=False)
 
     class Meta:
