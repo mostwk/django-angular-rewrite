@@ -1,5 +1,0 @@
-[run]
-include = django_rewrite/*
-omit = *migrations*, *tests*
-plugins =
-    django_coverage_plugin

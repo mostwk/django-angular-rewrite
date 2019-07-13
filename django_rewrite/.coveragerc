@@ -1,0 +1,12 @@
+[run]
+include = 
+    users/*,
+    authentication/*,
+    users/*,
+
+omit = 
+    *tests*,
+    *migrations*,
+
+plugins =
+    django_coverage_plugin

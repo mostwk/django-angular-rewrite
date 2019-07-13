@@ -16,7 +16,7 @@ env.read_env(str(ROOT_DIR.path(".env")))
 # GENERAL
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Moscow"
 
 LANGUAGE_CODE = "en-us"
 

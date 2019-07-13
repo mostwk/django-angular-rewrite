@@ -21,16 +21,9 @@ Running type checks with mypy:
 Test coverage
 -------------
 
-To run the tests, check your test coverage, and generate an HTML
-coverage report:
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-### Running tests with py.test
-
-    $ pytest
+### Running tests with py.test and generating coverage report
+    $ cd django_rewrite
+    $ pytest --cov
 
 Live reloading and Sass CSS compilation
 ---------------------------------------
