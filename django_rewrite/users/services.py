@@ -43,22 +43,31 @@ def get_full_user_data(*, user: User) -> dict:
     return {**get_user_data(user=user), **profile_data}
 
 
+def update_model_fields(obj, serializer, data):
+    for field, value in data.items():
+        if field in serializer.fields:
+            setattr(obj, field, value)
+
+    return obj
+
+
 def update_user_data(*, user: User, data: Dict[str, str]) -> dict:
     serializer = _UpdateUserSerializer(data=data)
     serializer.is_valid(raise_exception=True)
-    user.email = data.get('email', user.email)
+
+    user = update_model_fields(user, serializer, data)
 
     user.save()
 
-    return {**serializer.data}
+    return {**get_user_data(user=user)}
 
 
 def update_user_profile(*, user: User, data: Dict[str, str]) -> dict:
     serializer = _ProfileSerializer(data=data)
     serializer.is_valid(raise_exception=True)
-    user.profile.description = data.get(
-        'description', user.profile.description)
-    user.profile.avatar = data.get('avatar', user.profile.avatar)
+
+    user.profile = update_model_fields(user.profile, serializer, data)
+
     user.profile.save()
 
-    return {**serializer.data}
+    return {**get_full_user_data(user=user)}
