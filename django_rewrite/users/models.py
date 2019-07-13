@@ -24,3 +24,6 @@ class Profile(models.Model):
 
     avatar = ImageCropField(upload_to='avatars/', blank=True)
     cropping = ImageRatioField('avatar', '300x400')
+
+    def __str__(self):
+        return self.user.username

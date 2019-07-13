@@ -9,7 +9,7 @@ from .models import User, Profile
 class UserAdmin(auth_admin.UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    list_display = ["username", "is_superuser"]
+    list_display = ["username", 'email', "is_superuser"]
     search_fields = ["username"]
 
 
