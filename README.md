@@ -1,6 +1,6 @@
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg)](https://github.com/pydanny/cookiecutter-django/)
 [![Build Status](https://travis-ci.com/mostwk/django-angular-rewrite.svg?branch=master)](https://travis-ci.com/mostwk/django-angular-rewrite)
-
+[![Coverage Status](https://coveralls.io/repos/github/mostwk/django-angular-rewrite/badge.svg?branch=master)](https://coveralls.io/github/mostwk/django-angular-rewrite?branch=master)
 
 Settings
 ========
