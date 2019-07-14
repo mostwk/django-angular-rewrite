@@ -22,14 +22,10 @@ install:
   - pip install -r requirements/test.txt
 
 before_script:
-  - psql --version
   - psql -c 'CREATE DATABASE test;' -U postgres
 
 script:
   - ./manage.py migrate
   - flake8
   - cd django_rewrite/
-  - pytest
-
-after-success:
-  - coveralls
+  - pytest --cov
