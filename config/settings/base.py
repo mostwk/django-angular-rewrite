@@ -55,12 +55,14 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     "rest_framework",
-    'image_cropping',
+    "image_cropping",
     # "django_celery_beat",
 ]
 
 LOCAL_APPS = [
     "users",
+    "authentication",
+    "apis",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
