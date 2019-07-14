@@ -31,5 +31,5 @@ script:
   - cd django_rewrite/
   - pytest
 
-after-script:
+after-success:
   - coveralls
