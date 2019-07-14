@@ -1,8 +1,6 @@
 [run]
 include = 
-    users/*,
-    authentication/*,
-    users/*,
+    django_rewrite/*
 
 omit = 
     *tests*,
