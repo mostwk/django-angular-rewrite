@@ -1,8 +1,10 @@
 [run]
 include = 
-    users/*,
-    authentication/*,
     apis/*,
+    common/*
+    authentication/*,
+    posts/*,
+    users/*,
 
 omit = 
     *tests*,
