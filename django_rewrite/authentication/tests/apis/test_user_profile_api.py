@@ -1,7 +1,8 @@
 import pytest
-
-from conftest import USER_PROFILE_URL
+from django.urls import reverse
 from users.models import User
+
+USER_PROFILE_URL = reverse('api:auth:user-profile')
 
 
 @pytest.mark.django_db

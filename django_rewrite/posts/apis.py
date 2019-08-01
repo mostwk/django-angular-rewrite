@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from common.mixins import RatedApiMixin
 from posts.models import Post
+from posts.permissions import IsAuthenticatedOrPostAuthor
 
 
 class PostsApi(RatedApiMixin, ModelViewSet):
@@ -33,7 +33,7 @@ class PostsApi(RatedApiMixin, ModelViewSet):
 
     queryset = Post.objects.all()
     authentication_classes = (JSONWebTokenAuthentication,)
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrPostAuthor, )
     serializer_class = Serializer
 
     def list(self, request, *args, **kwargs):

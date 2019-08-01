@@ -56,6 +56,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "image_cropping",
+    "django_extensions",
     # "django_celery_beat",
 ]
 

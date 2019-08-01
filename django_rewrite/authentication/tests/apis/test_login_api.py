@@ -1,7 +1,8 @@
 import pytest
-
-from conftest import LOGIN_URL
+from django.urls import reverse
 from users.models import User
+
+LOGIN_URL = reverse('api:auth:login')
 
 
 @pytest.mark.django_db

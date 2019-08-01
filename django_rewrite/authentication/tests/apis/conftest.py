@@ -4,9 +4,6 @@ from rest_framework.test import APIClient
 from users.models import User
 
 REGISTER_URL = reverse('api:auth:register')
-LOGIN_URL = reverse('api:auth:login')
-USER_DETAIL_URL = reverse('api:auth:user-detail')
-USER_PROFILE_URL = reverse('api:auth:user-profile')
 
 
 @pytest.fixture

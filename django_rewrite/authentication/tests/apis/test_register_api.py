@@ -1,6 +1,8 @@
 import pytest
-from conftest import REGISTER_URL
+from django.urls import reverse
 from users.models import User
+
+REGISTER_URL = reverse('api:auth:register')
 
 
 @pytest.mark.parametrize(
