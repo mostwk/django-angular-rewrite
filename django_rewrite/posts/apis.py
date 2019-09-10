@@ -31,6 +31,11 @@ class PostsApi(RatedApiMixin, ModelViewSet):
         def get_votes(self, obj):
             return obj.votes
 
+        def validate(self, data):
+            request = self.context.get('request')
+            data['author'] = request.user
+            return data
+
     queryset = Post.objects.all()
     authentication_classes = (JSONWebTokenAuthentication,)
     permission_classes = (IsAuthenticatedOrPostAuthor, )
@@ -46,6 +51,3 @@ class PostsApi(RatedApiMixin, ModelViewSet):
 
         serializer = self.get_serializer(qs, many=True)
         return Response(serializer.data)
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)

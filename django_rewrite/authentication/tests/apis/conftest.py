@@ -28,7 +28,8 @@ def registered_user_data(register_request_data):
 
 
 @pytest.fixture
-def authenticated_api_user(api_user, registered_user_data):
+def authenticated_api_user(registered_user_data):
+    api_user = APIClient()
     user = User.objects.get(username=registered_user_data['username'])
     api_user.force_authenticate(user=user)
     return api_user
