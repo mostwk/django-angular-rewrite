@@ -1,16 +1,15 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from rest_framework_jwt.views import ObtainJSONWebToken
-from users.models import User
+from users.services import (
+    get_full_user_data, get_user_data, update_user_data, update_user_profile)
 
 from .permissions import JSONWebTokenAuthenticationMixin
-from users.services import (
-    get_user_data,
-    get_full_user_data,
-    update_user_data,
-    update_user_profile,
-)
+
+User = get_user_model()
 
 
 class RegistrationApi(APIView):

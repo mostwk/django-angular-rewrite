@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from common.mixins import RatedApiMixin
 from posts.models import Post
 from posts.permissions import IsAuthenticatedOrPostAuthor
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 
 class PostsApi(RatedApiMixin, ModelViewSet):

@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 
 from django_rewrite.users.forms import UserChangeForm, UserCreationForm
-from .models import User, Profile
+
+from .models import Profile, User
 
 
 @admin.register(User)

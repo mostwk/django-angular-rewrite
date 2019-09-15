@@ -1,5 +1,6 @@
-import pytest
 from django.urls import reverse
+
+import pytest
 from users.models import User
 
 LOGIN_URL = reverse('api:auth:login')

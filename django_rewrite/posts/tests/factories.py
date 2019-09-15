@@ -1,6 +1,5 @@
 import factory
 from factory.django import DjangoModelFactory
-
 from posts.models import Post
 from users.tests.factories import UserFactory
 

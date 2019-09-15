@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import Sum
 from django.utils import timezone
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Rating
@@ -30,8 +31,13 @@ class RatedModelMixin(models.Model):
 
 class RatedApiMixin:
 
-    @action(methods=['POST'], detail=True, url_path='vote/(?P<vote>-1|0|1?)')
+    @action(
+        methods=['POST'],
+        detail=True,
+        url_path='vote/(?P<vote>-1|0|1?)',
+        permission_classes=(IsAuthenticated, ),
+    )
     def vote(self, request, vote, pk=None, **kwargs):
         obj = self.get_object()
         process_object_rating(obj=obj, user=request.user, vote=vote)
-        return Response({})
+        return Response({'ok': True, 'votes': obj.votes})

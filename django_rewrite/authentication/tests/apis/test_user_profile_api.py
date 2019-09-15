@@ -1,5 +1,6 @@
-import pytest
 from django.urls import reverse
+
+import pytest
 from users.models import User
 
 USER_PROFILE_URL = reverse('api:auth:user-profile')

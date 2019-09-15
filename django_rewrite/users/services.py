@@ -1,6 +1,7 @@
 from typing import Dict
 
 from rest_framework import serializers
+
 from users.models import Profile, User
 
 

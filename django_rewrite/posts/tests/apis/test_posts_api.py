@@ -1,9 +1,15 @@
-import pytest
+import random
+
+from django.contrib.auth import get_user_model
 from django.urls import reverse
+from rest_framework.test import APIClient
+
+import pytest
 from posts.models import Post
 from posts.tests.factories import PostFactory
-from rest_framework.test import APIClient
 from users.tests.factories import UserFactory
+
+User = get_user_model()
 
 POSTS_URL = reverse('api:posts:post-list')
 
@@ -35,7 +41,7 @@ def test_post_create_api(api_user, authenticated_api_user):
 
 
 @pytest.mark.django_db
-def test_post_update_api(api_user):
+def test_post_update_api():
 
     user_1 = UserFactory()
     user_2 = UserFactory()
@@ -64,3 +70,48 @@ def test_post_update_api(api_user):
     assert response.status_code == 200
     assert response.data.get('title') == request_data.get('title')
     assert response.data.get('body') == request_data.get('body')
+
+
+@pytest.mark.parametrize(
+    ('vote', 'result'), [
+        (1, 1),
+        (0, 0),
+        (-1, -1),
+    ]
+)
+@pytest.mark.django_db
+def test_posts_single_user_rating_api(authenticated_api_user, vote, result):
+
+    post = PostFactory()
+
+    assert post.votes == 0
+
+    post_rating_url = f'{POSTS_URL}{post.id}/vote/{vote}/'
+
+    response = authenticated_api_user.post(post_rating_url)
+
+    assert response.data.get('votes') == result
+
+    assert post.votes == result
+
+
+@pytest.mark.django_db
+def test_posts_multiple_user_rating_api():
+
+    number_of_users = random.randint(2, 10)
+
+    api_client = APIClient()
+
+    users = UserFactory.generate_batch('create', number_of_users)
+
+    post = PostFactory()
+
+    assert post.votes == 0
+
+    post_rating_url = f'{POSTS_URL}{post.id}/vote/1/'
+
+    for user in users:
+        api_client.force_authenticate(user=user)
+        api_client.post(post_rating_url)
+
+    assert post.votes == number_of_users

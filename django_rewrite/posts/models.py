@@ -1,6 +1,6 @@
 from django.db import models
 
-from common.mixins import TrackableDateModelMixin, RatedModelMixin
+from common.mixins import RatedModelMixin, TrackableDateModelMixin
 
 
 class Post(TrackableDateModelMixin, RatedModelMixin, models.Model):
